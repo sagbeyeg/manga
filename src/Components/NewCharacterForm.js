@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-
 class NewCharacterForm extends Component {
   state = {
     name: "",
-    image: "",
-    show: ""                         
-  };
-
-  renderNewCharacter = (props) => {
-    return this.props.addCharacter()
+    img: "",
+    show: ""   
   }
 
   handleChange = (e) => {
@@ -22,20 +17,22 @@ class NewCharacterForm extends Component {
 
     this.props.submitHandler(this.state);
 
-    this.setState = ({ 
-      name: "", 
-      image: "",
-      show: ""
-    }, () => console.log(this.state))
+    this.setState({
+      name: "",
+      img: "",
+      show: ""   
+    })
+    
+    // console.log(this.state)
   }
 
   render() {
 
     return (
-      <form onSubmit={this.localSubmitHandler}>
+      <form onSubmit={event => this.localSubmitHandler(event)}>
         <input type="text" name="name" placeholder="name" onChange={this.handleChange} value={this.state.name} />
     
-        <input type="text" name="image" placeholder="image" onChange={this.handleChange} value={this.state.image} />
+        <input type="text" name="img" placeholder="img" onChange={this.handleChange} value={this.state.img} />
       
         <input type="text" name="show" placeholder="show" onChange={this.handleChange} value={this.state.show} />
         

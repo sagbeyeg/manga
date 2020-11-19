@@ -12,10 +12,10 @@ class CharactersList extends Component {
 
   renderCharacters = () => {  
     if (this.state.filter === 'All') {
-      return this.state.api.map(char => <CharacterCard key={char.id} char={char} />)
+      return this.state.api.map((char, idx) => <CharacterCard key={idx} char={char} />)
     } else {
       let filteredArray = this.state.api.filter(char => char.name.includes(this.state.filter))
-      return filteredArray.map(char => <CharacterCard key={char.id} char={char} />)
+      return filteredArray.map((char, idx) => <CharacterCard key={idx} char={char} />)
     }
   }
 
