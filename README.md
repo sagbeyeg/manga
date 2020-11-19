@@ -1,5 +1,5 @@
 # Copy this API and build an app that has the following:
-  <!-- 1. An index listing each character.                    -->
+  1. An index listing each character.                   
   2. A controlled form to add a new character to the index (non persisting).
   3. A controlled form to dynamically filter characters by name.
 

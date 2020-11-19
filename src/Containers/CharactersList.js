@@ -7,26 +7,25 @@ import {characters} from '../api'
 class CharactersList extends Component {
   state = {
     api: characters,
-    characters: [],
-    filters: {
-      type: 'all'
+    filter: 'All'
+  }
+
+  renderCharacters = () => {  
+    if (this.state.filter === 'All') {
+      return this.state.api.map(char => <CharacterCard key={char.id} char={char} />)
+    } else {
+      let filteredArray = this.state.api.filter(char => char.name.includes(this.state.filter))
+      return filteredArray.map(char => <CharacterCard key={char.id} char={char} />)
     }
   }
 
-  renderCharacters = () => {
-    return this.state.api.map(char => <CharacterCard key={char.id} char={char} />)
-  }
-
-  addCharacter = () => {
+  submitHandler = (charObj) => {
     console.log("I should create a new character")
+    this.setState({ api: [...this.state.api, charObj] })
   }
 
   onChangeType = ({ target: { value } }) => {
-    this.setState({ filters: { ...this.state.filters, type: value } });
-  };
-
-  onFindNameClick = () => {
-    console.log("I should filter")
+    this.setState({ filter: value}, ()=>console.log(this.state.filter));
   };
 
   render () {
@@ -35,11 +34,11 @@ class CharactersList extends Component {
         <h1>Characters</h1>
 
         <div className='new-char-form'>
-          <NewCharacterForm addCharacter={this.addCharacter()}/>
+          <NewCharacterForm submitHandler={this.submitHandler}/>
         </div>
 
         <div className='filter-form'>
-          <Filter api={this.state.api} onChangeType={this.onChangeType} onFindNameClick={this.onFindNameClick} />
+          <Filter api={this.state.api} onChangeType={this.onChangeType} />
         </div>
 
         <div className='characters'>

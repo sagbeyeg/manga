@@ -1,49 +1,44 @@
 import React, { Component } from "react";
 
 class NewCharacterForm extends Component {
-  constructor() {
-    super();
+  state = {
+    name: "",
+    image: "",
+    show: ""                         
+  };
 
-    this.state = {
-      name: '',
-      image: '',
-      show: ''                         
-    };
-    
+  renderNewCharacter = (props) => {
+    return this.props.addCharacter()
   }
 
-  renderNewCharacter = () => {
-    this.props.addCharacter()
-  }
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,
-      [e.target.image]: e.target.value,
-      [e.target.show]: e.target.value
+      [e.target.name]: e.target.value
     }, () => console.log(this.state))
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.renderNewCharacter()
+  localSubmitHandler = (e) => {
+    e.preventDefault();
+
+    this.props.submitHandler(this.state);
+
+    this.setState = ({ 
+      name: "", 
+      image: "",
+      show: ""
+    }, () => console.log(this.state))
   }
 
   render() {
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="name"  onChange={event => this.handleChange(event)} value={this.state.name} />
-        </label>
-        <label>
-          Image:
-          <input type="text" name="image"  onChange={event => this.handleChange(event)} value={this.state.image} />
-        </label>
-        <label>
-          Show:
-          <input type="text" name="show"  onChange={event => this.handleChange(event)} value={this.state.show} />
-        </label>
+      <form onSubmit={this.localSubmitHandler}>
+        <input type="text" name="name" placeholder="name" onChange={this.handleChange} value={this.state.name} />
+    
+        <input type="text" name="image" placeholder="image" onChange={this.handleChange} value={this.state.image} />
+      
+        <input type="text" name="show" placeholder="show" onChange={this.handleChange} value={this.state.show} />
+        
         <input type="submit" value="Submit" />
       </form>
     )
