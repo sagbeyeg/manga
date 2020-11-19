@@ -35,7 +35,7 @@ class CharactersList extends Component {
         <h1>Characters</h1>
 
         <div className='new-char-form'>
-          <NewCharacterForm addChar={this.addCharacter()}/>
+          <NewCharacterForm addCharacter={this.addCharacter()}/>
         </div>
 
         <div className='filter-form'>

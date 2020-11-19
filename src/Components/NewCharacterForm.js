@@ -13,24 +13,23 @@ class NewCharacterForm extends Component {
   }
 
   renderNewCharacter = () => {
-    // this.state(char => <CharacterCard char={char} />)
+    this.props.addCharacter()
   }
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
       [e.target.image]: e.target.value,
       [e.target.show]: e.target.value
-    }, () => console.log(this.state.image))
+    }, () => console.log(this.state))
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addChar()
+    this.renderNewCharacter()
   }
 
-
   render() {
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
