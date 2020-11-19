@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import CharacterCard from './CharacterCard'
 
 class NewCharacterForm extends Component {
   constructor() {
@@ -27,8 +26,7 @@ class NewCharacterForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // if (!this.state.name || !this.state.name || !this.state.name) return renderNewCharacter(this.state)
-    // console.log(this.props.renderNewCharacter(this.state))
+    this.props.addChar()
   }
 
 
